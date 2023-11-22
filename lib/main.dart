@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_tmdb/config/dev_config.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -36,8 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() {
     setState(() {
       _counter++;
-        DevConfig devConfig = DevConfig();
-print("${devConfig.apiHost}");
     });
   }
 
