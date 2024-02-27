@@ -9,23 +9,29 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
-            "args": ["--debug", "--dart-define-from-file", ".env"]
+            "args": ["--debug --dart-define=ENVIRONMENT=DEV .env"]
         },
         {
             "name": "movies_tmdb (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile",
             "program": "lib/main.dart",
-            "args": ["--profile", "--dart-define-from-file", ".env"]
+            "args": ["--profile --dart-define=ENVIRONMENT=PROD .env"]
+        },
+        {
+            "name": "movies_tmdb (profile mode) Prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--verbose  --dart-define=ENVIRONMENT=PROD .env"]
+            
         },
         {
             "name": "movies_tmdb (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "program": "lib/main.dart",
-            "args": ["--release", "--dart-define-from-file", ".env"]
+            "args": ["--dart-define=ENVIRONMENT=PROD .env"]
         }
     ]
 }
