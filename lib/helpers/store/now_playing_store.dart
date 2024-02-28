@@ -23,7 +23,7 @@ class NowPlayingStore {
   Future getNowPlaying() async {
     isLoading.value = true;
     try {
-      final result = await repository.fetchNowPlaying();
+      final List<NowPlayingModel> result = await repository.fetchNowPlaying();
       nowPlayingState.value = result;
     } on ExceptionNotFound catch (e) {
       error.value = e.message;

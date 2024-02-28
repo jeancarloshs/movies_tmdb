@@ -24,7 +24,6 @@
             "type": "dart",
             "flutterMode": "profile",
             "args": ["--verbose  --dart-define=ENVIRONMENT=PROD .env"]
-            
         },
         {
             "name": "movies_tmdb (release mode)",

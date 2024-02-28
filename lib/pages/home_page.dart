@@ -26,7 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-  print('body: ${nowPlayingStore.nowPlayingState.value}');
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,7 +53,8 @@ class _HomePageState extends State<HomePage> {
               child: Text(
                 nowPlayingStore.error.value,
                 style: const TextStyle(
-                  color: Colors.red,
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
               ),
@@ -82,30 +82,30 @@ class _HomePageState extends State<HomePage> {
                 final item = nowPlayingStore.nowPlayingState.value[index];
                 return Column(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        "https://image.tmdb.org/t/p/original/${item.results[index].posterPath}",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                    // ClipRRect(
+                    //   borderRadius: BorderRadius.circular(8),
+                    //   child: Image.network(
+                    //     "https://image.tmdb.org/t/p/original/${item.posterPath}",
+                    //     fit: BoxFit.cover,
+                    //   ),
+                    // ),
                     ListTile(
                       contentPadding: EdgeInsets.zero,
                       title: Text(
-                        item.results[index].title,
+                        item.results![index].title.toString(),
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
                           color: Colors.black,
                         ),
                       ),
-                      subtitle: Text(
-                        item.results[index].overview,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
+                      // subtitle: Text(
+                      //   item.overview,
+                      //   style: const TextStyle(
+                      //     fontSize: 16,
+                      //     color: Colors.black,
+                      //   ),
+                      // ),
                     )
                   ],
                 );
