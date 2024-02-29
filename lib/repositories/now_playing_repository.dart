@@ -29,8 +29,6 @@ class NowPlayingRepository implements INowPlayingRepository {
         getAllMovies.add(playingNow);
       }).toList();
 
-      print('TESTE: $getAllMovies');
-
       return getAllMovies;
     } else if (response.statusCode == 404) {
       throw ExceptionNotFound(message: 'A url informada não foi encontrada!');
