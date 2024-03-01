@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movies_tmdb/helpers/store/details_store.dart';
+import 'package:movies_tmdb/http/http_client.dart';
 import 'package:movies_tmdb/models/now_playing_model.dart';
 import 'package:intl/intl.dart';
+import 'package:movies_tmdb/repositories/details_repository.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({required this.itemDetail, super.key});
@@ -11,7 +14,22 @@ class DetailsPage extends StatefulWidget {
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
+const String videoKeyYoutube = "";
+
 class _DetailsPageState extends State<DetailsPage> {
+  final DetailsStore detailsStore = DetailsStore(
+    repository: DetailsRepository(
+      client: HttpClient(),
+      videoKey: videoKeyYoutube,
+    ),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    detailsStore.getDetails();
+  }
+
   @override
   Widget build(BuildContext context) {
     String dateApi = widget.itemDetail.releaseDate;
@@ -69,6 +87,9 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
               const SizedBox(
                 height: 10,
+              ),
+              FloatingActionButton(
+                onPressed: () {}, backgroundColor: Colors.deepPurple[200],
               ),
             ],
           ),

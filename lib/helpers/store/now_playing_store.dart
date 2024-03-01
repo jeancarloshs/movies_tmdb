@@ -6,6 +6,10 @@ import 'package:movies_tmdb/repository/i_now_playing_repository.dart';
 class NowPlayingStore {
   final INowPlayingRepository repository;
 
+  NowPlayingStore({
+    required this.repository,
+  });
+
   // Variável reativa para loading
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
 
@@ -15,10 +19,6 @@ class NowPlayingStore {
 
   // Variável reativa para o erro
   final ValueNotifier<String> error = ValueNotifier<String>('');
-
-  NowPlayingStore({
-    required this.repository,
-  });
 
   Future getNowPlaying() async {
     isLoading.value = true;
