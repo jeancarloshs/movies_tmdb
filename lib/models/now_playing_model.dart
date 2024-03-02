@@ -10,6 +10,7 @@ class NowPlayingModel {
   final bool video;
   final double voteAverage;
   final int voteCount;
+  final String backdropPath;
 
   NowPlayingModel({
     required this.id,
@@ -23,6 +24,7 @@ class NowPlayingModel {
     required this.video,
     required this.voteAverage,
     required this.voteCount,
+    required this.backdropPath,
   });
 
   factory NowPlayingModel.fromMap(Map<String, dynamic> map) {
@@ -38,6 +40,7 @@ class NowPlayingModel {
       video: map['video'],
       voteAverage: map['vote_average'],
       voteCount: map['vote_count'],
+      backdropPath: map['backdrop_path'],
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:movies_tmdb/helpers/store/details_store.dart';
 import 'package:movies_tmdb/http/http_client.dart';
@@ -50,10 +52,13 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                "https://image.tmdb.org/t/p/original/${widget.itemDetail.posterPath}",
-                width: double.infinity,
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  "https://image.tmdb.org/t/p/original/${widget.itemDetail.posterPath}",
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               const SizedBox(
                 height: 16,
@@ -88,8 +93,31 @@ class _DetailsPageState extends State<DetailsPage> {
               const SizedBox(
                 height: 10,
               ),
-              FloatingActionButton(
-                onPressed: () {}, backgroundColor: Colors.deepPurple[200],
+              const SizedBox(
+                height: 10,
+              ),
+              ButtonBar(
+                alignment: MainAxisAlignment.start,
+                buttonPadding: EdgeInsets.zero,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.orange,
+                    ),
+                    onPressed: () {
+                      print(widget.itemDetail.id);
+                    },
+                    child: const Text(
+                      "Assistir",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
