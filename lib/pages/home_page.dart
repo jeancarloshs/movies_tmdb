@@ -93,6 +93,9 @@ class _HomePageState extends State<HomePage> {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         title: Text(
@@ -114,9 +117,6 @@ class _HomePageState extends State<HomePage> {
                             maxLines: 3,
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                       ButtonBar(
                         alignment: MainAxisAlignment.start,
@@ -152,6 +152,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ],
+                      ),
+                      Divider(
+                        color: Colors.grey[400],
+                        thickness: 1,
                       ),
                     ],
                   ),

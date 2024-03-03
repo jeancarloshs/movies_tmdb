@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movies_tmdb/helpers/store/now_playing_store.dart';
 import 'package:movies_tmdb/http/http_client.dart';
