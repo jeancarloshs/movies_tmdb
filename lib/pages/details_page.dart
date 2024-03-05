@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movies_tmdb/helpers/store/details_store.dart';
 import 'package:movies_tmdb/http/http_client.dart';
+import 'package:movies_tmdb/models/details_model.dart';
 import 'package:movies_tmdb/models/now_playing_model.dart';
 import 'package:intl/intl.dart';
 import 'package:movies_tmdb/repositories/details_repository.dart';
@@ -16,7 +18,7 @@ class DetailsPage extends StatefulWidget {
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
- int videoKeyYoutube = 0;
+int videoKeyYoutube = 0;
 
 class _DetailsPageState extends State<DetailsPage> {
   final DetailsStore detailsStore = DetailsStore(
@@ -107,8 +109,14 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     onPressed: () {
                       videoKeyYoutube = widget.itemDetail.id;
-                      print(videoKeyYoutube);
-                      print(detailsStore.detailsState.value);
+                      setState(() {
+                        print("videoKeyYoutube $videoKeyYoutube");
+                        final List<DetailsModel> detailsList =
+                            detailsStore.detailsState.value;
+                        for (final DetailsModel details in detailsList) {
+                          print('Name: ${details.keyYoutube}');
+                        }
+                      });
                     },
                     child: const Text(
                       "Assistir",

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_tmdb/helpers/exceptions/exceptions.dart';
 import 'package:movies_tmdb/models/details_model.dart';
-import 'package:movies_tmdb/repositories/details_repository.dart';
+import 'package:movies_tmdb/pages/details_page.dart';
 import 'package:movies_tmdb/repository/i_details_repository.dart';
 
 class DetailsStore {
@@ -21,7 +21,7 @@ class DetailsStore {
   Future getDetails() async {
     isLoading.value = true;
     try {
-      final List<DetailsModel> result = await repository.getDetails();
+      final List<DetailsModel> result = await repository.getDetails(videoKeyYoutube);
       detailsState.value = result;
     } on ExceptionNotFound catch (e) {
       error.value = e.message;
