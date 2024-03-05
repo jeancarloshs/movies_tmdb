@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage> {
                 final item = nowPlayingStore.nowPlayingState.value[index];
                 return Container(
                   width: MediaQuery.of(context).size.width * .6,
+                  margin: const EdgeInsets.symmetric(vertical: 20.0),
                   padding: const EdgeInsets.only(right: 16),
                   child: Column(
                     children: [
