@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_tmdb/helpers/exceptions/exceptions.dart';
 import 'package:movies_tmdb/models/details_model.dart';
 import 'package:movies_tmdb/repositories/details_repository.dart';
+import 'package:movies_tmdb/repository/i_details_repository.dart';
 
 class DetailsStore {
   final IDetailsRepository repository;

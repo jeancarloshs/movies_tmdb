@@ -16,7 +16,7 @@ class DetailsPage extends StatefulWidget {
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
-const String videoKeyYoutube = "";
+ int videoKeyYoutube = 0;
 
 class _DetailsPageState extends State<DetailsPage> {
   final DetailsStore detailsStore = DetailsStore(
@@ -106,7 +106,9 @@ class _DetailsPageState extends State<DetailsPage> {
                       backgroundColor: Colors.orange,
                     ),
                     onPressed: () {
-                      print(widget.itemDetail.id);
+                      videoKeyYoutube = widget.itemDetail.id;
+                      print(videoKeyYoutube);
+                      print(detailsStore.detailsState.value);
                     },
                     child: const Text(
                       "Assistir",

@@ -1,14 +1,11 @@
 import 'package:movies_tmdb/helpers/exceptions/exceptions.dart';
 import 'package:movies_tmdb/http/http_client.dart';
 import 'package:movies_tmdb/models/details_model.dart';
-
-abstract class IDetailsRepository {
-  Future<List<DetailsModel>> getDetails();
-}
+import 'package:movies_tmdb/repository/i_details_repository.dart';
 
 class DetailsRepository implements IDetailsRepository {
   final IHttpClient client;
-  final String videoKey;
+  final int videoKey;
 
   DetailsRepository({
     required this.client,
@@ -19,7 +16,7 @@ class DetailsRepository implements IDetailsRepository {
   Future<List<DetailsModel>> getDetails() async {
     final response = await client.get(
         url:
-            'https://api.themoviedb.org/3/movie/$videoKey/videos?api_key=35d85489e2e98217e6bb80e10bd639e3&language=pt-BR');
+            'https://api.themoviedb.org/3/movie/693134?api_key=35d85489e2e98217e6bb80e10bd639e3&language=pt-BR&append_to_response=videos');
 
     if (response.statusCode == 200) {
       final List<DetailsModel> getDetails = [];
