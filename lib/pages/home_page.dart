@@ -1,6 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:movies_tmdb/helpers/store/now_playing_store.dart';
 import 'package:movies_tmdb/http/http_client.dart';
 import 'package:movies_tmdb/pages/details_page.dart';
@@ -75,6 +77,7 @@ class _HomePageState extends State<HomePage> {
             );
           } else {
             return ListView.separated(
+              scrollDirection: Axis.horizontal,
               separatorBuilder: (context, index) => const SizedBox(
                 height: 32,
               ),
@@ -82,83 +85,116 @@ class _HomePageState extends State<HomePage> {
               itemCount: nowPlayingStore.nowPlayingState.value.length,
               itemBuilder: (_, index) {
                 final item = nowPlayingStore.nowPlayingState.value[index];
-                return SizedBox(
+                return Container(
+                  width: MediaQuery.of(context).size.width * .6,
+                  padding: const EdgeInsets.only(right: 16),
                   child: Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          "https://image.tmdb.org/t/p/original/${item.posterPath}",
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(
-                          item.title,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
-                        ),
-                        subtitle: SizedBox(
-                          child: Text(
-                            item.overview,
-                            style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                          ),
-                        ),
-                      ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.start,
-                        buttonPadding: EdgeInsets.zero,
+                      Stack(
                         children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: Colors.grey[200],
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              "https://image.tmdb.org/t/p/original/${item.posterPath}",
+                              width: double.infinity,
+                              fit: BoxFit.cover,
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DetailsPage(
-                                          itemDetail: item,
-                                        )),
-                              ).then((value) {
-                                setState(() {
-                                  print('Atualizando a lista');
-                                  nowPlayingStore.getNowPlaying();
+                          ),
+                          Positioned(
+                            bottom: 10,
+                            left: 10,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                foregroundColor: Colors.black,
+                                backgroundColor: Colors.grey[200],
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailsPage(
+                                            itemDetail: item,
+                                          )),
+                                ).then((value) {
+                                  setState(() {
+                                    print('Atualizando a lista');
+                                    nowPlayingStore.getNowPlaying();
+                                  });
                                 });
-                              });
-                              print('Detalhes do filme: ${item.title}');
-                            },
-                            child: const Text(
-                              "Detalhes",
-                              style: TextStyle(
-                                color: Colors.deepPurple,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
+                                print('Detalhes do filme: ${item.title}');
+                              },
+                              child: const Text(
+                                "Detalhes",
+                                style: TextStyle(
+                                  color: Colors.deepPurple,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Divider(
-                        color: Colors.grey[400],
-                        thickness: 1,
-                      ),
                     ],
                   ),
+
+                  // ListTile(
+                  //   contentPadding: EdgeInsets.zero,
+                  //   title: Text(
+                  //     item.title,
+                  //     style: const TextStyle(
+                  //       fontSize: 24,
+                  //       fontWeight: FontWeight.w600,
+                  //       color: Colors.black,
+                  //     ),
+                  //   ),
+                  // subtitle: SizedBox(
+                  //   child: Text(
+                  //     item.overview,
+                  //     style: const TextStyle(
+                  //         fontSize: 16,
+                  //         color: Colors.black,
+                  //         fontWeight: FontWeight.w400),
+                  //     overflow: TextOverflow.ellipsis,
+                  //     maxLines: 3,
+                  //   ),
+                  // ),
+                  // ),
+                  // ButtonBar(
+                  //   alignment: MainAxisAlignment.start,
+                  //   buttonPadding: EdgeInsets.zero,
+                  //   children: [
+                  //     TextButton(
+                  //       style: TextButton.styleFrom(
+                  //         foregroundColor: Colors.black,
+                  //         backgroundColor: Colors.grey[200],
+                  //       ),
+                  //       onPressed: () {
+                  //         Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //               builder: (context) => DetailsPage(
+                  //                     itemDetail: item,
+                  //                   )),
+                  //         ).then((value) {
+                  //           setState(() {
+                  //             print('Atualizando a lista');
+                  //             nowPlayingStore.getNowPlaying();
+                  //           });
+                  //         });
+                  //         print('Detalhes do filme: ${item.title}');
+                  //       },
+                  //       child: const Text(
+                  //         "Detalhes",
+                  //         style: TextStyle(
+                  //           color: Colors.deepPurple,
+                  //           fontSize: 16,
+                  //           fontWeight: FontWeight.w600,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 );
               },
             );
