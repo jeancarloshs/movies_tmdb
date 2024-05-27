@@ -98,36 +98,39 @@ class _DetailsPageState extends State<DetailsPage> {
               const SizedBox(
                 height: 10,
               ),
-              ButtonBar(
-                alignment: MainAxisAlignment.start,
-                buttonPadding: EdgeInsets.zero,
-                children: [
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      backgroundColor: Colors.orange,
-                    ),
-                    onPressed: () {
-                      videoKeyYoutube = widget.itemDetail.id;
-                      setState(() {
-                        print("videoKeyYoutube $videoKeyYoutube");
-                        final List<DetailsModel> detailsList =
-                            detailsStore.detailsState.value;
-                        for (final DetailsModel details in detailsList) {
-                          print('Name: ${details.keyYoutube}');
-                        }
-                      });
-                    },
-                    child: const Text(
-                      "Assistir",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+              Positioned(
+                width: 150,
+                child: ButtonBar(
+                  alignment: MainAxisAlignment.start,
+                  buttonPadding: EdgeInsets.zero,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        backgroundColor: Colors.orange,
+                      ),
+                      onPressed: () {
+                        videoKeyYoutube = widget.itemDetail.id;
+                        setState(() {
+                          print("videoKeyYoutube $videoKeyYoutube");
+                          final List<DetailsModel> detailsList =
+                              detailsStore.detailsState.value;
+                          for (final DetailsModel details in detailsList) {
+                            print('Name: ${details.keyYoutube}');
+                          }
+                        });
+                      },
+                      child: const Text(
+                        "Assistir",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movies_tmdb/helpers/store/now_playing_store.dart';
 import 'package:movies_tmdb/http/http_client.dart';
 import 'package:movies_tmdb/pages/details_page.dart';
@@ -86,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (_, index) {
                 final item = nowPlayingStore.nowPlayingState.value[index];
                 return Container(
-                  width: MediaQuery.of(context).size.width * .6,
+                  width: MediaQuery.of(context).size.width * .2,
                   margin: const EdgeInsets.symmetric(vertical: 20.0),
                   padding: const EdgeInsets.only(right: 16),
                   child: Column(
@@ -104,6 +102,7 @@ class _HomePageState extends State<HomePage> {
                           Positioned(
                             bottom: 10,
                             left: 10,
+                            width: 150,
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.black,

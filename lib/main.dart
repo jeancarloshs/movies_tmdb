@@ -17,12 +17,6 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: "/",
           page: () => const HomePage(),
-          // children: [
-          //   GetPage(
-          //     name: "/http",
-          //     page: () => HttpPage(),
-          //   )
-          // ],
         ),
       ],
     );
