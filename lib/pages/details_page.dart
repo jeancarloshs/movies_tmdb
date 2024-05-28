@@ -18,20 +18,22 @@ class DetailsPage extends StatefulWidget {
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
-int videoKeyYoutube = 0;
+// int videoKeyYoutube = 0;
 
 class _DetailsPageState extends State<DetailsPage> {
   final DetailsStore detailsStore = DetailsStore(
     repository: DetailsRepository(
       client: HttpClient(),
-      videoKey: videoKeyYoutube,
+      // videoKeyYoutube: videoKeyYoutube,
     ),
   );
+
+  late List<DetailsModel> detailsList = detailsStore.detailsState.value;
 
   @override
   void initState() {
     super.initState();
-    detailsStore.getDetails();
+    detailsStore.getDetails(widget.itemDetail.id);
   }
 
   @override
@@ -85,7 +87,7 @@ class _DetailsPageState extends State<DetailsPage> {
                 height: 10,
               ),
               Text(
-                "Ano de Lançamento - $formattedDate",
+                "Data de Lançamento - $formattedDate",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -95,28 +97,45 @@ class _DetailsPageState extends State<DetailsPage> {
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Positioned(
-                width: 150,
-                child: ButtonBar(
-                  alignment: MainAxisAlignment.start,
-                  buttonPadding: EdgeInsets.zero,
-                  children: [
-                    TextButton(
+              ButtonBar(
+                alignment: MainAxisAlignment.start,
+                buttonPadding: EdgeInsets.zero,
+                children: [
+                  SizedBox(
+                    width: 150,
+                    child: TextButton(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.black,
                         backgroundColor: Colors.orange,
                       ),
                       onPressed: () {
-                        videoKeyYoutube = widget.itemDetail.id;
                         setState(() {
-                          print("videoKeyYoutube $videoKeyYoutube");
-                          final List<DetailsModel> detailsList =
-                              detailsStore.detailsState.value;
-                          for (final DetailsModel details in detailsList) {
-                            print('Name: ${details.keyYoutube}');
+                          if (detailsStore.detailsState.isEmpty) {
+                            Get.snackbar(
+                              'Ops...',
+                              'Nenhum Trailer Encontrado!!!'.toString(),
+                              backgroundColor: Colors.grey[900],
+                              colorText: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                              barBlur: 200,
+                              isDismissible: true,
+                            );
+                          } else {
+                            for (final DetailsModel details in detailsList) {
+                              if (details.keyYoutube.length > 1) {
+                                print('Youtube URL: https://www.youtube.com/embed/${details.keyYoutube}');
+                                break;
+                              } else {
+                                Get.snackbar(
+                                  'Ops...',
+                                  'Nenhum Trailer Encontrado!!!'.toString(),
+                                  backgroundColor: Colors.grey[900],
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  barBlur: 200,
+                                  isDismissible: true,
+                                );
+                              }
+                            }
                           }
                         });
                       },
@@ -129,8 +148,8 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

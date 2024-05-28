@@ -7,18 +7,18 @@ import 'package:movies_tmdb/repository/i_details_repository.dart';
 
 class DetailsRepository implements IDetailsRepository {
   final IHttpClient client;
-  final int videoKey;
+  // final int videoKeyYoutube;
 
   DetailsRepository({
     required this.client,
-    required this.videoKey,
+    // required this.videoKeyYoutube,
   });
 
   @override
-  Future<List<DetailsModel>> getDetails(int videoKey) async {
+  Future<List<DetailsModel>> getDetails(int videoKeyYoutube) async {
     final response = await client.get(
         url:
-            'https://api.themoviedb.org/3/movie/$videoKey?api_key=35d85489e2e98217e6bb80e10bd639e3&language=pt-BR&append_to_response=videos');
+            'https://api.themoviedb.org/3/movie/$videoKeyYoutube?api_key=35d85489e2e98217e6bb80e10bd639e3&language=pt-BR&append_to_response=videos');
 
     if (response.statusCode == 200) {
       final List<DetailsModel> getDetails = [];

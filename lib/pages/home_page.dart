@@ -80,11 +80,12 @@ class _HomePageState extends State<HomePage> {
                 height: 32,
               ),
               padding: const EdgeInsets.all(16),
-              itemCount: nowPlayingStore.nowPlayingState.value.length,
+              itemCount: nowPlayingStore.nowPlayingState.value.length > 5 ? 5 : nowPlayingStore.nowPlayingState.value.length,
               itemBuilder: (_, index) {
                 final item = nowPlayingStore.nowPlayingState.value[index];
                 return Container(
-                  width: MediaQuery.of(context).size.width * .2,
+                  // width: MediaQuery.of(context).size.width * .6,
+                  width: 250,
                   margin: const EdgeInsets.symmetric(vertical: 20.0),
                   padding: const EdgeInsets.only(right: 16),
                   child: Column(
@@ -102,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                           Positioned(
                             bottom: 10,
                             left: 10,
-                            width: 150,
+                            width: 125,
                             child: TextButton(
                               style: TextButton.styleFrom(
                                 foregroundColor: Colors.black,
@@ -137,64 +138,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-
-                  // ListTile(
-                  //   contentPadding: EdgeInsets.zero,
-                  //   title: Text(
-                  //     item.title,
-                  //     style: const TextStyle(
-                  //       fontSize: 24,
-                  //       fontWeight: FontWeight.w600,
-                  //       color: Colors.black,
-                  //     ),
-                  //   ),
-                  // subtitle: SizedBox(
-                  //   child: Text(
-                  //     item.overview,
-                  //     style: const TextStyle(
-                  //         fontSize: 16,
-                  //         color: Colors.black,
-                  //         fontWeight: FontWeight.w400),
-                  //     overflow: TextOverflow.ellipsis,
-                  //     maxLines: 3,
-                  //   ),
-                  // ),
-                  // ),
-                  // ButtonBar(
-                  //   alignment: MainAxisAlignment.start,
-                  //   buttonPadding: EdgeInsets.zero,
-                  //   children: [
-                  //     TextButton(
-                  //       style: TextButton.styleFrom(
-                  //         foregroundColor: Colors.black,
-                  //         backgroundColor: Colors.grey[200],
-                  //       ),
-                  //       onPressed: () {
-                  //         Navigator.push(
-                  //           context,
-                  //           MaterialPageRoute(
-                  //               builder: (context) => DetailsPage(
-                  //                     itemDetail: item,
-                  //                   )),
-                  //         ).then((value) {
-                  //           setState(() {
-                  //             print('Atualizando a lista');
-                  //             nowPlayingStore.getNowPlaying();
-                  //           });
-                  //         });
-                  //         print('Detalhes do filme: ${item.title}');
-                  //       },
-                  //       child: const Text(
-                  //         "Detalhes",
-                  //         style: TextStyle(
-                  //           color: Colors.deepPurple,
-                  //           fontSize: 16,
-                  //           fontWeight: FontWeight.w600,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                 );
               },
             );

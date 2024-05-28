@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movies_tmdb/helpers/exceptions/exceptions.dart';
 import 'package:movies_tmdb/models/details_model.dart';
 import 'package:movies_tmdb/pages/details_page.dart';
@@ -13,12 +14,13 @@ class DetailsStore {
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
 
   // Variavel reativa para state
-  final ValueNotifier<List<DetailsModel>> detailsState = ValueNotifier([]);
+  // final ValueNotifier<List<DetailsModel>> detailsState = ValueNotifier([]);
+  final RxList<DetailsModel> detailsState = RxList<DetailsModel>();
 
   // Variavel reativa para erro
   final ValueNotifier<String> error = ValueNotifier('');
 
-  Future getDetails() async {
+  Future getDetails(int videoKeyYoutube) async {
     isLoading.value = true;
     try {
       final List<DetailsModel> result = await repository.getDetails(videoKeyYoutube);
